@@ -1,0 +1,56 @@
+.wrapper {
+  display: flex;
+}
+.navbar {
+  height: 100vh;
+  width: 50px;
+  padding: 10px 0;
+  position: relative;
+
+  box-sizing: border-box;
+
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+
+  background-color: #161616;
+
+  display: flex;
+  align-items: center;
+  gap: 75px;
+
+  flex-direction: column;
+
+  &_button {
+    color: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    transition: 0.2s ease;
+  }
+  &_button:hover {
+    color: rgba(255, 255, 255);
+    filter: drop-shadow(0px 0px 1px rgb(255, 255, 255));
+  }
+  &_settings {
+    position: absolute;
+    bottom: 10px;
+  }
+}
+
+.leftContent {
+  &_title {
+    font-size: 32px;
+  }
+}
+
+.filter {
+  display: flex;
+  gap: 15px;
+  &_btn {
+    color: rgba(0, 0, 0, 0.6);
+    border-radius: 15px;
+    padding: 0 5px;
+  }
+  &_btn.active {
+    background-color: #fc69d3;
+    color: #ba0b8a;
+  }
+}
