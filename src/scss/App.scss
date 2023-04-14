@@ -160,6 +160,8 @@ body {
   right: 25px;
 
   color: #fc69d3;
+  background: none;
+  border: none;
 
   cursor: pointer;
 
@@ -176,13 +178,18 @@ body {
   display: flex;
   align-items: center;
   flex-direction: column;
+  z-index: 5;
 
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 
   width: 35%;
+
   background-color: #fff;
+  box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.1);
+
+  border-radius: 10px;
 
   &_title {
     font-size: 24px;
@@ -229,5 +236,49 @@ body {
   &_row {
     display: flex;
     justify-content: space-between;
+    margin-top: 6px;
+  }
+  &_error {
+    font-size: 12px;
+    color: red;
+  }
+  &_blur {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+
+    width: 100vw;
+    height: 100vh;
+
+    backdrop-filter: blur(2.5px);
+    background: rgba(0, 0, 0, 0.1);
+  }
+  &_submit {
+    background: #fc69d3;
+
+    border: none;
+    border-radius: 5px;
+
+    width: 100px;
+    padding: 5px;
+
+    font-family: "poppins";
+    font-size: 16px;
+    color: #fff;
+  }
+
+  &_cancel {
+    background: none;
+
+    border: solid #fc69d3 4px;
+    border-radius: 5px;
+
+    width: 100px;
+    padding: 5px;
+
+    font-family: "poppins";
+    font-size: 16px;
+    color: #fc69d3;
   }
 }

@@ -2,7 +2,7 @@ import React from "react";
 
 function AddTaskBtn() {
   return (
-    <div className="AddTaskBtn">
+    <button className="AddTaskBtn">
       <svg
         width="83"
         height="83"
@@ -58,7 +58,7 @@ function AddTaskBtn() {
           </filter>
         </defs>
       </svg>
-    </div>
+    </button>
   );
 }
 
