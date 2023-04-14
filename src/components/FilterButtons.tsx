@@ -1,7 +1,7 @@
 import React from "react";
 
 interface FilterButtonsProps {
-  clickHandle: (filtr: filterType) => void;
+  clickHandle: (filter: filterType) => void;
   filter: filterType;
 }
 

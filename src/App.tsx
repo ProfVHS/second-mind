@@ -3,18 +3,19 @@ import { useState } from "react";
 
 import "./css/App.css";
 
-import FilterButtons from "./component/FilterButtons";
-import TasksBox from "./component/TasksBox";
-import Navbar from "./component/Navbar";
-import AddTaskBtn from "./component/AddTaskBtn";
-import AddTaskWindow from "./component/AddTaskWindow";
+import FilterButtons from "./components/FilterButtons";
+import TasksBox from "./components/TasksBox";
+import Navbar from "./components/navbar";
+import AddTaskBtn from "./components/AddTaskBtn";
+import AddTaskWindow from "./components/AddTaskWindow";
 
 function App() {
   const [filter, setFilter] = useState<filterType>("TODO");
+  const [showModal, setShowModal] = useState<boolean>(false);
   return (
     <>
       <div className="wrapper">
-        <Navbar sub="HOME" />
+        <Navbar subpage="HOME" />
         <div className="content">
           <div className="leftContent">
             <span className="leftContent_title">Today's tasks</span>
@@ -23,8 +24,9 @@ function App() {
           </div>
         </div>
       </div>
-      <AddTaskBtn />
-      <AddTaskWindow />
+      <AddTaskBtn onClick={() => setShowModal(true)} />
+
+      {showModal && <AddTaskWindow onClose={() => setShowModal(false)} />}
     </>
   );
 }

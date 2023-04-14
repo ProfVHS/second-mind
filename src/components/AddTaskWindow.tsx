@@ -8,9 +8,15 @@ type FormValues = {
   desc: string;
   priority: priorityType;
   category: string;
+  date: string;
+  time: string;
 };
 
-function AddTaskWindow() {
+interface AddTaskWindowProps {
+  onClose: () => void;
+}
+
+function AddTaskWindow({ onClose }: AddTaskWindowProps) {
   const {
     register,
     handleSubmit,
@@ -79,18 +85,20 @@ function AddTaskWindow() {
           </div>
           <div className="modal_row">
             <input
+              {...register("date")}
               style={{ width: "75%" }}
               type="date"
               defaultValue={todayDate.toISOString().split("T")[0]}
             />
             <input
+              {...register("time")}
               style={{ width: "25%" }}
               type="time"
               defaultValue={"12:00"}
             />
           </div>
           <div className="modal_row">
-            <button className="modal_cancel" type="reset">
+            <button className="modal_cancel" type="reset" onClick={onClose}>
               Cancel
             </button>
             <button className="modal_submit" type="submit">

@@ -1,8 +1,12 @@
 import React from "react";
 
-function AddTaskBtn() {
+interface AddTaskBtn {
+  onClick: () => void;
+}
+
+function AddTaskBtn({ onClick }: AddTaskBtn) {
   return (
-    <button className="AddTaskBtn">
+    <button onClick={onClick} className="AddTaskBtn">
       <svg
         width="83"
         height="83"
