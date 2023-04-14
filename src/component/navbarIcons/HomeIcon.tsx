@@ -1,6 +1,9 @@
 import React from "react";
 
-function HomeIcon() {
+interface HomeIconProps {
+  isSelected: boolean;
+}
+function HomeIcon({ isSelected }: HomeIconProps) {
   return (
     <>
       <svg
@@ -9,7 +12,7 @@ function HomeIcon() {
         viewBox="0 0 28 30"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="navbar_button"
+        className={`navbar_button ${isSelected && "selected"}`}
         onClick={() => {
           alert("Strona główna");
         }}
