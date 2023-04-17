@@ -3,26 +3,22 @@ import { useForm, SubmitHandler } from "react-hook-form";
 
 const todayDate = new Date();
 
-type FormValues = {
-  taskname: string;
-  desc: string;
-  priority: priorityType;
-  category: string;
-  date: string;
-  time: string;
-};
-
 interface AddTaskWindowProps {
   onClose: () => void;
+  addTask: (task: TaskValues) => void;
 }
 
-function AddTaskWindow({ onClose }: AddTaskWindowProps) {
+function AddTaskWindow({ onClose, addTask }: AddTaskWindowProps) {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormValues>();
-  const onSubmit: SubmitHandler<FormValues> = (data) => console.log(data);
+  } = useForm<TaskValues>();
+  const onSubmit: SubmitHandler<TaskValues> = (data) => {
+    data.progress = "TODO";
+    addTask(data);
+    onClose();
+  };
 
   return (
     <>
