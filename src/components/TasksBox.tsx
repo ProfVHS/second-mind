@@ -3,15 +3,14 @@ import { Task } from "./task";
 import { isToday } from "date-fns";
 
 interface TasksBoxProps {
-  tasks: [TaskValues];
-  onDeleteTask: (id: number) => void;
-  onDoneTask: (id: number) => void;
+  tasks: [taskValues];
+  showModal: (modal: modalVisibility, id: number) => void;
   filter: filterType;
 }
 
 const priorityIndex = ["LOW", "MEDIUM", "HIGH"];
 
-function TasksBox({ tasks, onDeleteTask, filter, onDoneTask }: TasksBoxProps) {
+function TasksBox({ tasks, showModal, filter }: TasksBoxProps) {
   return (
     <div className="tasksBox">
       {tasks
@@ -20,7 +19,7 @@ function TasksBox({ tasks, onDeleteTask, filter, onDoneTask }: TasksBoxProps) {
             ? 1
             : -1
         )
-        .map((item: TaskValues, i: number) => {
+        .map((item: taskValues, i: number) => {
           if (
             (isToday(new Date(item.date)) && item.progress === filter) ||
             (filter === "ALL" && isToday(new Date(item.date)))
@@ -28,13 +27,13 @@ function TasksBox({ tasks, onDeleteTask, filter, onDoneTask }: TasksBoxProps) {
             return (
               <Task
                 key={i}
+                id={i}
                 name={item.taskname}
                 deadline={`${item.date} ${item.time}`}
                 desc={item.desc}
                 priority={item.priority}
                 category={item.category}
-                onDeleteTask={() => onDeleteTask(i)}
-                onDoneTask={() => onDoneTask(i)}
+                showModal={showModal}
               />
             );
           }

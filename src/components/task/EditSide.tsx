@@ -3,11 +3,13 @@ interface EditToolsBoxProps {
   isEditToolsMode: boolean;
   onDeleteTask: () => void;
   onDoneTask: () => void;
+  onEditTask: () => void;
 }
-export function EditToolsBox({
+export function EditSide({
   isEditToolsMode,
   onDeleteTask,
   onDoneTask,
+  onEditTask,
 }: EditToolsBoxProps) {
   return (
     <div className={`task-card_toolsBox ${isEditToolsMode ? "active" : ""}`}>
@@ -25,7 +27,7 @@ export function EditToolsBox({
           />
         </svg>
       </div>
-      <div className="task-card_edit">
+      <div className="task-card_edit" onClick={onEditTask}>
         <svg
           width="15"
           height="15"

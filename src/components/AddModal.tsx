@@ -3,18 +3,18 @@ import { useForm, SubmitHandler } from "react-hook-form";
 
 const todayDate = new Date();
 
-interface AddTaskWindowProps {
+interface AddModalProps {
   onClose: () => void;
-  addTask: (task: TaskValues) => void;
+  addTask: (task: taskValues) => void;
 }
 
-function AddTaskWindow({ onClose, addTask }: AddTaskWindowProps) {
+export function AddModal({ onClose, addTask }: AddModalProps) {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<TaskValues>();
-  const onSubmit: SubmitHandler<TaskValues> = (data) => {
+  } = useForm<taskValues>();
+  const onSubmit: SubmitHandler<taskValues> = (data) => {
     data.progress = "TODO";
     addTask(data);
     onClose();
@@ -107,5 +107,3 @@ function AddTaskWindow({ onClose, addTask }: AddTaskWindowProps) {
     </>
   );
 }
-
-export default AddTaskWindow;

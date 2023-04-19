@@ -2,7 +2,7 @@ type filterType = "TODO" | "DONE" | "ALL";
 type priority = "HIGH" | "MEDIUM" | "LOW";
 type subPage = "HOME" | "CATEGORIES" | "CALENDAR" | "SETTINGS";
 type progress = "TODO" | "DONE";
-type TaskValues = {
+type taskValues = {
   taskname: string;
   desc: string;
   priority: priority;
@@ -11,3 +11,4 @@ type TaskValues = {
   time: string;
   progress: progress;
 };
+type modalVisibility = false | "ADD" | "EDIT" | "DONE" | "DELETE";

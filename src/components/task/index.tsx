@@ -1,26 +1,26 @@
 import React, { useState } from "react";
 import { formatDistanceToNowStrict } from "date-fns";
 import { InfoSide } from "./InfoSide";
-import { EditToolsBox } from "./EditSide";
+import { EditSide } from "./EditSide";
 
 interface TaskProps {
+  id: number;
   priority: priority;
   name: string;
   deadline: string;
   desc: string;
   category: string;
-  onDeleteTask: () => void;
-  onDoneTask: () => void;
+  showModal: (modal: modalVisibility, id: number) => void;
 }
 
 export function Task({
+  id,
   priority,
   name,
   deadline,
   desc,
   category,
-  onDeleteTask,
-  onDoneTask,
+  showModal,
 }: TaskProps) {
   const [editTools, setEditTools] = useState<boolean>(false);
 
@@ -39,10 +39,11 @@ export function Task({
           category={category}
         />
       </div>
-      <EditToolsBox
+      <EditSide
         isEditToolsMode={editTools}
-        onDeleteTask={onDeleteTask}
-        onDoneTask={onDoneTask}
+        onDoneTask={() => showModal("DONE", id)}
+        onEditTask={() => showModal("EDIT", id)}
+        onDeleteTask={() => showModal("DELETE", id)}
       />
     </div>
   );

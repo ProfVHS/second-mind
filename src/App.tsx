@@ -7,16 +7,15 @@ import FilterButtons from "./components/FilterButtons";
 import TasksBox from "./components/TasksBox";
 import Navbar from "./components/navbar";
 import AddTaskBtn from "./components/AddTaskBtn";
-import AddTaskWindow from "./components/AddTaskWindow";
+import { AddModal } from "./components/AddModal";
 import { DeleteModal } from "./components/DeleteModal";
 import { DoneModal } from "./components/DoneModal";
+import { EditModal } from "./components/EditModal";
 
 function App() {
   const [filter, setFilter] = useState<filterType>("TODO");
-  const [showModalAddTask, setShowModalAddTask] = useState<boolean>(false);
-  const [showModalDeleteTask, setShowModalDeleteTask] =
-    useState<boolean>(false);
-  const [showModalDoneTask, setShowModalDoneTask] = useState<boolean>(false);
+  const [modalVisibility, setModalVisibility] =
+    useState<modalVisibility>(false);
   const [toEditId, setToEditId] = useState<number>(0);
 
   //==== loading/saving tasks system ====//
@@ -27,23 +26,29 @@ function App() {
     return tasksArray;
   };
 
-  const [tasks, setTasks] = useState<[TaskValues]>(loadTasks);
+  const [tasks, setTasks] = useState<[taskValues]>(loadTasks);
 
   const saveTasks = () => {
     const newTasksStorage = JSON.stringify(tasks);
     localStorage.setItem("tasks", newTasksStorage);
-    console.log(tasks);
   };
 
-  const addTask = (task: TaskValues) => {
-    const newTasks: [TaskValues] = tasks;
+  const addTask = (task: taskValues) => {
+    const newTasks: [taskValues] = tasks;
     newTasks.push(task);
     setTasks(newTasks);
     saveTasks();
   };
 
+  const editTask = (task: taskValues) => {
+    const newTasks: [taskValues] = tasks;
+    newTasks[toEditId] = task;
+    setTasks(newTasks);
+    saveTasks();
+  };
+
   const deleteTask = (id: number) => {
-    const newTasks: [TaskValues] = tasks;
+    const newTasks: [taskValues] = tasks;
     newTasks.splice(id, 1);
     setTasks(newTasks);
     saveTasks();
@@ -58,13 +63,9 @@ function App() {
     saveTasks();
   };
 
-  const showDeleteModal = (id: number) => {
+  const showModal = (modal: modalVisibility, id: number) => {
     setToEditId(id);
-    setShowModalDeleteTask(true);
-  };
-  const showDoneModal = (id: number) => {
-    setToEditId(id);
-    setShowModalDoneTask(true);
+    setModalVisibility(modal);
   };
 
   return (
@@ -75,33 +76,32 @@ function App() {
           <div className="leftContent">
             <span className="leftContent_title">Today's tasks</span>
             <FilterButtons clickHandle={setFilter} filter={filter} />
-            <TasksBox
-              tasks={tasks}
-              onDeleteTask={showDeleteModal}
-              onDoneTask={showDoneModal}
-              filter={filter}
-            />
+            <TasksBox tasks={tasks} showModal={showModal} filter={filter} />
           </div>
         </div>
       </div>
-      <AddTaskBtn onClick={() => setShowModalAddTask(true)} />
+      <AddTaskBtn onClick={() => setModalVisibility("ADD")} />
 
-      {showModalAddTask && (
-        <AddTaskWindow
-          addTask={addTask}
-          onClose={() => setShowModalAddTask(false)}
-        />
+      {modalVisibility === "ADD" && (
+        <AddModal addTask={addTask} onClose={() => setModalVisibility(false)} />
       )}
-      {showModalDeleteTask && (
+      {modalVisibility === "DELETE" && (
         <DeleteModal
-          onClose={() => setShowModalDeleteTask(false)}
+          onClose={() => setModalVisibility(false)}
           onDelete={() => deleteTask(toEditId)}
         />
       )}
-      {showModalDoneTask && (
+      {modalVisibility === "DONE" && (
         <DoneModal
-          onClose={() => setShowModalDoneTask(false)}
+          onClose={() => setModalVisibility(false)}
           onChange={() => changeProgress(toEditId)}
+        />
+      )}
+      {modalVisibility === "EDIT" && (
+        <EditModal
+          onClose={() => setModalVisibility(false)}
+          task={tasks[toEditId]}
+          onEdit={editTask}
         />
       )}
     </>
