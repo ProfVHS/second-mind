@@ -11,4 +11,8 @@ type taskValues = {
   time: string;
   progress: progress;
 };
+type categoryValues = {
+  name: string;
+  isDefault: boolean;
+};
 type modalVisibility = false | "ADD" | "EDIT" | "DONE" | "DELETE";

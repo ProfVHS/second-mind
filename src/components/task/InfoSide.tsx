@@ -17,16 +17,16 @@ export function InfoSide({
   category,
 }: InfoSide) {
   return (
-    <div className="task-card_grid">
-      <div className={`task-card_priorityDot ${priority}`} />
-      <div className="task-card_name">{name}</div>
-      <div className="task-card_deadline">
+    <div className="item-card_grid">
+      <div className={`item-card_dot ${priority}`} />
+      <div className="item-card_name">{name}</div>
+      <div className="item-card_deadline">
         {formatDistanceToNowStrict(new Date(deadline), {
           addSuffix: true,
         })}
       </div>
-      <div className="task-card_desc">{desc}</div>
-      <div className="task-card_category">{category}</div>
+      <div className="item-card_desc">{desc}</div>
+      <div className="item-card_category">{category}</div>
     </div>
   );
 }

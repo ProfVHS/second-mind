@@ -29,8 +29,8 @@ export function Task({
   };
 
   return (
-    <div className="task" onMouseLeave={() => setEditTools(false)}>
-      <div className="task-card" onClick={() => handleClick()}>
+    <div className="item" onMouseLeave={() => setEditTools(false)}>
+      <div className="item-card" onClick={() => handleClick()}>
         <InfoSide
           name={name}
           desc={desc}

@@ -1,16 +1,16 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 
-import "./css/App.css";
+import "../css/App.css";
 
-import FilterButtons from "./components/FilterButtons";
-import TasksBox from "./components/TasksBox";
-import Navbar from "./components/navbar";
-import AddTaskBtn from "./components/AddTaskBtn";
-import { AddModal } from "./components/AddModal";
-import { DeleteModal } from "./components/DeleteModal";
-import { DoneModal } from "./components/DoneModal";
-import { EditModal } from "./components/EditModal";
+import FilterButtons from "../components/FilterButtons";
+import TasksBox from "../components/TasksBox";
+import Navbar from "../components/navbar";
+import AddTaskBtn from "../components/AddTaskBtn";
+import { AddModal } from "../components/Modals/Tasks/AddModal";
+import { DeleteModal } from "../components/Modals/Tasks/DeleteModal";
+import { DoneModal } from "../components/Modals/Tasks/DoneModal";
+import { EditModal } from "../components/Modals/Tasks/EditModal";
 
 function App() {
   const [filter, setFilter] = useState<filterType>("TODO");

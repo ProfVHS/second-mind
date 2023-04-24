@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 interface IconProps {
   isSelected: boolean;
 }
@@ -23,6 +24,7 @@ export function CalendarIcon({ isSelected }: IconProps) {
 }
 
 export function CategoriesIcon({ isSelected }: IconProps) {
+  const navigate = useNavigate();
   return (
     <>
       <svg
@@ -33,7 +35,7 @@ export function CategoriesIcon({ isSelected }: IconProps) {
         xmlns="http://www.w3.org/2000/svg"
         className={`navbar_button ${isSelected && "selected"}`}
         onClick={() => {
-          alert("Categories");
+          navigate("/categories");
         }}
       >
         <path
@@ -46,6 +48,7 @@ export function CategoriesIcon({ isSelected }: IconProps) {
 }
 
 export function HomeIcon({ isSelected }: IconProps) {
+  const navigate = useNavigate();
   return (
     <>
       <svg
@@ -56,7 +59,7 @@ export function HomeIcon({ isSelected }: IconProps) {
         xmlns="http://www.w3.org/2000/svg"
         className={`navbar_button ${isSelected && "selected"}`}
         onClick={() => {
-          alert("Strona główna");
+          navigate("/");
         }}
       >
         <path

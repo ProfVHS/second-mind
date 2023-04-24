@@ -12,8 +12,8 @@ export function EditSide({
   onEditTask,
 }: EditToolsBoxProps) {
   return (
-    <div className={`task-card_toolsBox ${isEditToolsMode ? "active" : ""}`}>
-      <div className="task-card_delete" onClick={onDeleteTask}>
+    <div className={`item-card_toolsBox ${isEditToolsMode ? "active" : ""}`}>
+      <div className="item-card_delete" onClick={onDeleteTask}>
         <svg
           width="15"
           height="18"
@@ -27,7 +27,7 @@ export function EditSide({
           />
         </svg>
       </div>
-      <div className="task-card_edit" onClick={onEditTask}>
+      <div className="item-card_edit" onClick={onEditTask}>
         <svg
           width="15"
           height="15"
@@ -41,7 +41,7 @@ export function EditSide({
           />
         </svg>
       </div>
-      <div className="task-card_done" onClick={onDoneTask}>
+      <div className="item-card_done" onClick={onDoneTask}>
         <svg
           width="17"
           height="13"
