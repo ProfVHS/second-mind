@@ -4,16 +4,19 @@ import { useState } from "react";
 import "../css/App.css";
 
 import FilterButtons from "../components/FilterButtons";
-import TasksBox from "../components/TasksBox";
+import TasksBox from "../components/Task";
 import Navbar from "../components/navbar";
 import AddTaskBtn from "../components/AddTaskBtn";
 import { AddModal } from "../components/Modals/Tasks/AddModal";
 import { DeleteModal } from "../components/Modals/Tasks/DeleteModal";
 import { DoneModal } from "../components/Modals/Tasks/DoneModal";
 import { EditModal } from "../components/Modals/Tasks/EditModal";
+import { useParams } from "react-router-dom";
 
-function App() {
-  const [filter, setFilter] = useState<filterType>("TODO");
+export function CategoryPage() {
+  const { categoryName } = useParams();
+
+  const [filter, setFilter] = useState<progressFilter>("TODO");
   const [modalVisibility, setModalVisibility] =
     useState<modalVisibility>(false);
   const [toEditId, setToEditId] = useState<number>(0);
@@ -71,12 +74,20 @@ function App() {
   return (
     <>
       <div className="wrapper">
-        <Navbar subpage="HOME" />
+        <Navbar subpage="CATEGORIES" />
         <div className="content">
           <div className="leftContent">
-            <span className="leftContent_title">Today's tasks</span>
+            <span className="leftContent_title">
+              {categoryName} category's tasks
+            </span>
             <FilterButtons clickHandle={setFilter} filter={filter} />
-            <TasksBox tasks={tasks} showModal={showModal} filter={filter} />
+            <TasksBox
+              tasks={tasks}
+              showModal={showModal}
+              progressFilter={filter}
+              filterType="CATEGORY"
+              category={categoryName}
+            />
           </div>
         </div>
       </div>
@@ -107,5 +118,3 @@ function App() {
     </>
   );
 }
-
-export default App;

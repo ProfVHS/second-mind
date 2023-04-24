@@ -21,6 +21,14 @@ export function EditModal({ onClose, task, onEdit }: EditModalProps) {
     onClose();
   };
 
+  const loadCategories = () => {
+    const categoriesStorage: string =
+      localStorage.getItem("categories") || "[]";
+    const categoriesArray = JSON.parse(categoriesStorage);
+    return categoriesArray;
+  };
+  const categories: [categoryValues] = loadCategories();
+
   return (
     <>
       <div className="modal">
@@ -81,7 +89,11 @@ export function EditModal({ onClose, task, onEdit }: EditModalProps) {
               style={{ width: "45%" }}
               defaultValue={task.category}
             >
-              <option value={"DEFAULT"}>Default</option>
+              {categories.map((item, i) => (
+                <option key={i} value={item.name}>
+                  {item.name}
+                </option>
+              ))}
             </select>
           </div>
           <div className="modal_row">

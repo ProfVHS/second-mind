@@ -1,8 +1,8 @@
 import React from "react";
 
 interface FilterButtonsProps {
-  clickHandle: (filter: filterType) => void;
-  filter: filterType;
+  clickHandle: (filter: progressFilter) => void;
+  filter: progressFilter;
 }
 
 function FilterButtons({ clickHandle, filter }: FilterButtonsProps) {

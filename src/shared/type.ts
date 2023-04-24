@@ -1,4 +1,5 @@
-type filterType = "TODO" | "DONE" | "ALL";
+type progressFilter = "TODO" | "DONE" | "ALL";
+type filterType = "CATEGORY" | "TODAYS" | "DATE";
 type priority = "HIGH" | "MEDIUM" | "LOW";
 type subPage = "HOME" | "CATEGORIES" | "CALENDAR" | "SETTINGS";
 type progress = "TODO" | "DONE";

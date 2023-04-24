@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 
 const todayDate = new Date();
@@ -19,6 +19,14 @@ export function AddModal({ onClose, addTask }: AddModalProps) {
     addTask(data);
     onClose();
   };
+
+  const loadCategories = () => {
+    const categoriesStorage: string =
+      localStorage.getItem("categories") || "[]";
+    const categoriesArray = JSON.parse(categoriesStorage);
+    return categoriesArray;
+  };
+  const categories: [categoryValues] = loadCategories();
 
   return (
     <>
@@ -76,7 +84,11 @@ export function AddModal({ onClose, addTask }: AddModalProps) {
               className="modal_select"
               style={{ width: "45%" }}
             >
-              <option value={"DEFAULT"}>Default</option>
+              {categories.map((item, i) => (
+                <option key={i} value={item.name}>
+                  {item.name}
+                </option>
+              ))}
             </select>
           </div>
           <div className="modal_row">

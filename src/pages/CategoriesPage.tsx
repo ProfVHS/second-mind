@@ -8,6 +8,8 @@ import Navbar from "../components/navbar";
 import AddTaskBtn from "../components/AddTaskBtn";
 import { CategoriesBox } from "../components/Categories";
 import { AddModal } from "../components/Modals/Categories/AddModal";
+import { DeleteModal } from "../components/Modals/Categories/DeleteModal";
+import { EditModal } from "../components/Modals/Categories/EditModal";
 
 export function CategoriesPage() {
   const [modalVisibility, setModalVisibility] =
@@ -16,7 +18,7 @@ export function CategoriesPage() {
 
   //==== loading/saving categories system ====//
 
-  const loadcategories = () => {
+  const loadCategories = () => {
     const categoriesStorage: string =
       localStorage.getItem("categories") || "[]";
     const categoriesArray = JSON.parse(categoriesStorage);
@@ -30,7 +32,7 @@ export function CategoriesPage() {
   };
 
   const [categories, setCategories] =
-    useState<[categoryValues]>(loadcategories);
+    useState<[categoryValues]>(loadCategories);
 
   const [tasks, setTasks] = useState<[taskValues]>(loadTasks);
 
@@ -39,21 +41,31 @@ export function CategoriesPage() {
     localStorage.setItem("categories", newcategoriesStorage);
   };
 
-  const addCategory = (task: categoryValues) => {
+  const addCategory = (category: categoryValues) => {
     const newcategories: [categoryValues] = categories;
-    newcategories.push(task);
+    newcategories.push(category);
     setCategories(newcategories);
     saveCategories();
   };
 
-  const editCategory = (task: categoryValues) => {
+  const editCategory = (category: categoryValues) => {
     const newcategories: [categoryValues] = categories;
-    newcategories[selectedId] = task;
+    newcategories[selectedId] = category;
     setCategories(newcategories);
     saveCategories();
+  };
+
+  //DELETE TASKS WHERE CATEGORY IS DELETED
+  const deleteTask = (id: number) => {
+    const newTasks = tasks.filter(
+      (item) => item.category != categories[id].name
+    );
+    const newTasksStorage = JSON.stringify(newTasks);
+    localStorage.setItem("tasks", newTasksStorage);
   };
 
   const deleteCategory = (id: number) => {
+    deleteTask(id);
     const newcategories: [categoryValues] = categories;
     newcategories.splice(id, 1);
     setCategories(newcategories);
@@ -76,6 +88,7 @@ export function CategoriesPage() {
               isDefault={true}
               categories={categories}
               tasks={tasks}
+              showModal={showModal}
             />
           </div>
         </div>
@@ -86,6 +99,20 @@ export function CategoriesPage() {
         <AddModal
           onClose={() => setModalVisibility(false)}
           addCategories={addCategory}
+        />
+      )}
+      {modalVisibility === "DELETE" && (
+        <DeleteModal
+          onClose={() => setModalVisibility(false)}
+          onDelete={() => deleteCategory(selectedId)}
+        />
+      )}
+      {modalVisibility === "EDIT" && (
+        <EditModal
+          onClose={() => setModalVisibility(false)}
+          editCategory={editCategory}
+          category={categories[selectedId]}
+          tasks={tasks}
         />
       )}
     </>
