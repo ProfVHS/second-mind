@@ -4,19 +4,19 @@ import { useState } from "react";
 import "../css/App.css";
 
 import FilterButtons from "../components/FilterButtons";
-import TasksBox from "../components/Task";
 import Navbar from "../components/navbar";
 import AddTaskBtn from "../components/AddTaskBtn";
 import { AddModal } from "../components/Modals/Tasks/AddModal";
 import { DeleteModal } from "../components/Modals/Tasks/DeleteModal";
 import { DoneModal } from "../components/Modals/Tasks/DoneModal";
 import { EditModal } from "../components/Modals/Tasks/EditModal";
+import { TasksBox } from "../components/Task";
 
 export function HomePage() {
   const [filter, setFilter] = useState<progressFilter>("TODO");
   const [modalVisibility, setModalVisibility] =
     useState<modalVisibility>(false);
-  const [toEditId, setToEditId] = useState<number>(0);
+  const [selectedId, setSelectedId] = useState<number>(0);
 
   //==== loading/saving tasks system ====//
 
@@ -26,7 +26,16 @@ export function HomePage() {
     return tasksArray;
   };
 
+  const loadCategories = () => {
+    const categoriesStorage: string =
+      localStorage.getItem("categories") || "[]";
+    const categoriesArray = JSON.parse(categoriesStorage);
+    return categoriesArray;
+  };
+
   const [tasks, setTasks] = useState<[taskValues]>(loadTasks);
+  const [categories, setCategories] =
+    useState<[categoryValues]>(loadCategories);
 
   const saveTasks = () => {
     const newTasksStorage = JSON.stringify(tasks);
@@ -42,7 +51,7 @@ export function HomePage() {
 
   const editTask = (task: taskValues) => {
     const newTasks: [taskValues] = tasks;
-    newTasks[toEditId] = task;
+    newTasks[selectedId] = task;
     setTasks(newTasks);
     saveTasks();
   };
@@ -64,7 +73,7 @@ export function HomePage() {
   };
 
   const showModal = (modal: modalVisibility, id: number) => {
-    setToEditId(id);
+    setSelectedId(id);
     setModalVisibility(modal);
   };
 
@@ -93,20 +102,21 @@ export function HomePage() {
       {modalVisibility === "DELETE" && (
         <DeleteModal
           onClose={() => setModalVisibility(false)}
-          onDelete={() => deleteTask(toEditId)}
+          onDelete={() => deleteTask(selectedId)}
         />
       )}
       {modalVisibility === "DONE" && (
         <DoneModal
           onClose={() => setModalVisibility(false)}
-          onChange={() => changeProgress(toEditId)}
+          onChange={() => changeProgress(selectedId)}
         />
       )}
       {modalVisibility === "EDIT" && (
         <EditModal
           onClose={() => setModalVisibility(false)}
-          task={tasks[toEditId]}
+          task={tasks[selectedId]}
           onEdit={editTask}
+          categories={categories}
         />
       )}
     </>

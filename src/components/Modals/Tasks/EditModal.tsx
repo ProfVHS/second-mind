@@ -7,9 +7,15 @@ interface EditModalProps {
   onClose: () => void;
   onEdit: (task: taskValues) => void;
   task: taskValues;
+  categories: [categoryValues];
 }
 
-export function EditModal({ onClose, task, onEdit }: EditModalProps) {
+export function EditModal({
+  onClose,
+  task,
+  onEdit,
+  categories,
+}: EditModalProps) {
   const {
     register,
     handleSubmit,
@@ -20,14 +26,6 @@ export function EditModal({ onClose, task, onEdit }: EditModalProps) {
     onEdit(data);
     onClose();
   };
-
-  const loadCategories = () => {
-    const categoriesStorage: string =
-      localStorage.getItem("categories") || "[]";
-    const categoriesArray = JSON.parse(categoriesStorage);
-    return categoriesArray;
-  };
-  const categories: [categoryValues] = loadCategories();
 
   return (
     <>

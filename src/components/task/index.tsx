@@ -12,7 +12,7 @@ interface TasksBoxProps {
 
 const priorityIndex = ["LOW", "MEDIUM", "HIGH"];
 
-function TasksBox({
+export function TasksBox({
   tasks,
   showModal,
   progressFilter,
@@ -74,5 +74,3 @@ function TasksBox({
     </div>
   );
 }
-
-export default TasksBox;
