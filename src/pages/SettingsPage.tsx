@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+
+import "../styles/Style.scss";
+
 import Navbar from "../components/navbar";
 import { SetCategoryModal } from "../components/Modals/Settings/SetCategoryModal";
 import { ClearDataModal } from "../components/Modals/Settings/ClearDataModal";

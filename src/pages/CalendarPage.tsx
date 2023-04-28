@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import "../styles/Style.scss";
+
 import Navbar from "../components/navbar";
 import {
   eachDayOfInterval,

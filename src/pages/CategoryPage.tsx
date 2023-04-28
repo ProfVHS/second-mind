@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 
-import "../css/App.css";
+import "../styles/Style.scss";
 
 import FilterButtons from "../components/FilterButtons";
 import { TasksBox } from "../components/Task";
