@@ -1,50 +1,93 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../components/navbar";
 import {
   eachDayOfInterval,
   format,
   getDate,
   getDay,
+  getDaysInMonth,
   getWeekOfMonth,
+  isBefore,
+  isSameDay,
 } from "date-fns";
+import { useNavigate } from "react-router-dom";
+import { DateControls } from "../components/DateControls";
+import { DayBox } from "../components/DayBox";
 
 const dateNow = new Date();
 
-const daysInMonth = (year: number, month: number) =>
-  new Date(2023, 4, 0).getDate();
-
 export function CalendarPage() {
+  const daysName = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+
+  const loadTasks = () => {
+    const tasksStorage: string = localStorage.getItem("tasks") || "[]";
+    const tasksArray = JSON.parse(tasksStorage);
+    return tasksArray;
+  };
+
   const [year, setYear] = useState<number>(dateNow.getFullYear());
   const [month, setMonth] = useState<number>(dateNow.getMonth());
-  const [days, setDays] = useState(
-    eachDayOfInterval({
-      start: new Date(year, month, 1),
-      end: new Date(year, month, daysInMonth(year, month)),
-    })
-  );
-  //new Date(2023, 4, 0).getDate()
-  console.log(days);
+
+  const getAllMonthDays = (year: number, month: number) => {
+    return eachDayOfInterval({
+      start: new Date(year, month, 2 - getDay(new Date(year, month, 1))),
+      end: new Date(year, month, getDaysInMonth(new Date(year, month, 1))),
+    });
+  };
+
+  const [days, setDays] = useState<Date[]>(getAllMonthDays(year, month));
+  const [tasks, setTasks] = useState<[taskValues]>(loadTasks);
+
+  const nextDate = () => {
+    if (month + 1 > 11) {
+      setMonth(0);
+      setYear(year + 1);
+    } else {
+      setMonth(month + 1);
+    }
+  };
+  const prevDate = () => {
+    if (month - 1 < 0) {
+      setMonth(11);
+      setYear(year - 1);
+    } else {
+      setMonth(month - 1);
+    }
+  };
+
+  useEffect(() => {
+    setDays(getAllMonthDays(year, month));
+  }, [month]);
 
   return (
     <>
       <div className="wrapper">
         <Navbar subpage="CALENDAR" />
         <div className="content" style={{ flexDirection: "column" }}>
-          <span className="calendar_date">
-            ( {year} {format(new Date(year, month, 1), "LLLL")} )
-          </span>
+          <DateControls
+            year={year}
+            month={month}
+            nextClick={nextDate}
+            prevClick={prevDate}
+          />
           <div className="calendar">
-            {days.map((day, i) => (
+            {daysName.map((day, i) => (
               <div
-                className="calendar_day"
+                key={i}
+                className="calendar_dayname"
                 style={{
-                  gridColumn: getDay(day) === 0 ? 7 : getDay(day),
-                  gridRow: getWeekOfMonth(day, { weekStartsOn: 1 }),
+                  gridColumn: i + 1,
+                  gridRow: 1,
                 }}
               >
-                {getDate(day)}
+                {daysName[i]}
               </div>
             ))}
+            {days.map((day: Date, i) => {
+              return (
+                <DayBox day={day} year={year} month={month} tasks={tasks} />
+              );
+            })}
           </div>
         </div>
       </div>

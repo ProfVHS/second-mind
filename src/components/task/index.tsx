@@ -8,6 +8,7 @@ interface TasksBoxProps {
   progressFilter: progressFilter;
   filterType: filterType;
   category?: string;
+  date?: string;
 }
 
 const priorityIndex = ["LOW", "MEDIUM", "HIGH"];
@@ -18,9 +19,10 @@ export function TasksBox({
   progressFilter,
   filterType,
   category,
+  date,
 }: TasksBoxProps) {
   return (
-    <div className="tasksBox">
+    <div className="flex-column">
       {tasks
         .sort((a, b) =>
           priorityIndex.indexOf(a.priority) < priorityIndex.indexOf(b.priority)
@@ -55,6 +57,26 @@ export function TasksBox({
             (filterType === "CATEGORY" &&
               progressFilter === "ALL" &&
               item.category === category)
+          ) {
+            return (
+              <Task
+                key={i}
+                id={i}
+                name={item.taskname}
+                deadline={`${item.date} ${item.time}`}
+                desc={item.desc}
+                priority={item.priority}
+                category={item.category}
+                showModal={showModal}
+              />
+            );
+          } else if (
+            (filterType === "DATE" &&
+              item.date === date &&
+              item.progress === progressFilter) ||
+            (filterType === "DATE" &&
+              progressFilter === "ALL" &&
+              item.date === date)
           ) {
             return (
               <Task

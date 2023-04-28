@@ -1,3 +1,4 @@
+import { format, formatISO } from "date-fns";
 import React, { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 
@@ -6,9 +7,10 @@ const todayDate = new Date();
 interface AddModalProps {
   onClose: () => void;
   addTask: (task: taskValues) => void;
+  date?: string;
 }
 
-export function AddModal({ onClose, addTask }: AddModalProps) {
+export function AddModal({ onClose, addTask, date }: AddModalProps) {
   const {
     register,
     handleSubmit,
@@ -96,13 +98,20 @@ export function AddModal({ onClose, addTask }: AddModalProps) {
               {...register("date")}
               style={{ width: "75%" }}
               type="date"
-              defaultValue={todayDate.toISOString().split("T")[0]}
+              className="modal_select"
+              defaultValue={
+                date ? date : formatISO(todayDate, { representation: "date" })
+              }
             />
             <input
               {...register("time")}
               style={{ width: "25%" }}
+              className="modal_select"
               type="time"
-              defaultValue={"12:00"}
+              defaultValue={format(
+                new Date().setHours(new Date().getHours() + 1),
+                "HH:mm"
+              )}
             />
           </div>
           <div className="modal_row">
