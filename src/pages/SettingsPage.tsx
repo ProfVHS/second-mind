@@ -5,6 +5,7 @@ import "../styles/Style.scss";
 import Navbar from "../components/navbar";
 import { SetCategoryModal } from "../components/Modals/Settings/SetCategoryModal";
 import { ClearDataModal } from "../components/Modals/Settings/ClearDataModal";
+import { categoryValues } from "../shared/type";
 
 export function SettingsPage() {
   const loadCategories = () => {

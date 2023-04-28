@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { formatDistanceToNowStrict } from "date-fns";
+import { priority } from "../../shared/type";
 
 interface InfoSide {
   priority: priority;

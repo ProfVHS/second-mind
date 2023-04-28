@@ -13,6 +13,12 @@ import { EditModal } from "../components/Modals/Tasks/EditModal";
 import { TasksBox } from "../components/Task";
 import { useParams } from "react-router-dom";
 import { format } from "date-fns";
+import {
+  categoryValues,
+  modalVisibility,
+  progressFilter,
+  taskValues,
+} from "../shared/type";
 
 export function DayPage() {
   const { date } = useParams<string>();

@@ -1,9 +1,9 @@
-type progressFilter = "TODO" | "DONE" | "ALL";
-type filterType = "CATEGORY" | "TODAYS" | "DATE";
-type priority = "HIGH" | "MEDIUM" | "LOW";
-type subPage = "HOME" | "CATEGORIES" | "CALENDAR" | "SETTINGS";
-type progress = "TODO" | "DONE";
-type taskValues = {
+export type progressFilter = "TODO" | "DONE" | "ALL";
+export type filterType = "CATEGORY" | "TODAYS" | "DATE";
+export type priority = "HIGH" | "MEDIUM" | "LOW";
+export type subPage = "HOME" | "CATEGORIES" | "CALENDAR" | "SETTINGS";
+export type progress = "TODO" | "DONE";
+export type taskValues = {
   taskname: string;
   desc: string;
   priority: priority;
@@ -12,8 +12,8 @@ type taskValues = {
   time: string;
   progress: progress;
 };
-type categoryValues = {
+export type categoryValues = {
   name: string;
   isDefault: boolean;
 };
-type modalVisibility = false | "ADD" | "EDIT" | "DONE" | "DELETE";
+export type modalVisibility = false | "ADD" | "EDIT" | "DONE" | "DELETE";

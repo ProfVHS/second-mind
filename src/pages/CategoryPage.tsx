@@ -12,6 +12,12 @@ import { DeleteModal } from "../components/Modals/Tasks/DeleteModal";
 import { DoneModal } from "../components/Modals/Tasks/DoneModal";
 import { EditModal } from "../components/Modals/Tasks/EditModal";
 import { useParams } from "react-router-dom";
+import {
+  categoryValues,
+  modalVisibility,
+  progressFilter,
+  taskValues,
+} from "../shared/type";
 
 export function CategoryPage() {
   const { categoryName } = useParams();

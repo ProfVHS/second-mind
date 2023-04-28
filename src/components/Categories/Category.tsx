@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { InfoSide } from "./InfoSide";
 import { EditSide } from "./EditSide";
 import { NavigateFunction } from "react-router-dom";
+import { modalVisibility, taskValues } from "../../shared/type";
 interface CategoriesProps {
   id: number;
   name: string;

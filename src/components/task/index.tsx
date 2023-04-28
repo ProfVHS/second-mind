@@ -1,6 +1,12 @@
 import React from "react";
 import { Task } from "./Task";
 import { isToday } from "date-fns";
+import {
+  filterType,
+  modalVisibility,
+  progressFilter,
+  taskValues,
+} from "../../shared/type";
 
 interface TasksBoxProps {
   tasks: [taskValues];

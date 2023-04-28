@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { InfoSide } from "./InfoSide";
 import { EditSide } from "./EditSide";
+import { modalVisibility, priority } from "../../shared/type";
 
 interface TaskProps {
   id: number;

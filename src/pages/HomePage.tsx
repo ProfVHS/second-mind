@@ -11,6 +11,12 @@ import { DeleteModal } from "../components/Modals/Tasks/DeleteModal";
 import { DoneModal } from "../components/Modals/Tasks/DoneModal";
 import { EditModal } from "../components/Modals/Tasks/EditModal";
 import { TasksBox } from "../components/Task";
+import {
+  categoryValues,
+  modalVisibility,
+  progressFilter,
+  taskValues,
+} from "../shared/type";
 
 export function HomePage() {
   const [filter, setFilter] = useState<progressFilter>("TODO");

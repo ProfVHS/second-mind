@@ -10,6 +10,7 @@ import { CategoriesBox } from "../components/Categories";
 import { AddModal } from "../components/Modals/Categories/AddModal";
 import { DeleteModal } from "../components/Modals/Categories/DeleteModal";
 import { EditModal } from "../components/Modals/Categories/EditModal";
+import { categoryValues, modalVisibility, taskValues } from "../shared/type";
 
 export function CategoriesPage() {
   const [modalVisibility, setModalVisibility] =

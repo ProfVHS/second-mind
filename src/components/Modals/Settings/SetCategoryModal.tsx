@@ -1,5 +1,6 @@
 import React from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { categoryValues } from "../../../shared/type";
 
 interface SetCategoryModalProps {
   onClose: () => void;
