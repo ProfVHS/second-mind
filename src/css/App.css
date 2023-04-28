@@ -1,9 +1,11 @@
 body {
   background-color: #f9f9f9;
+  height: 100vh;
 }
 
 .wrapper {
   display: flex;
+  height: 100vh;
 }
 
 .navbar {
@@ -42,10 +44,13 @@ body {
   display: flex;
   align-items: center;
   width: 100%;
-  height: 100%;
   padding: 15px 75px;
 }
 
+.leftContent {
+  width: 50%;
+  height: 100%;
+}
 .leftContent_title {
   font-size: 32px;
   -webkit-user-select: none;
@@ -58,6 +63,16 @@ body {
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
+}
+
+.rightContent {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  width: 50%;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 50px 10px;
 }
 
 .filter {
@@ -495,6 +510,24 @@ body {
   font-size: 16px;
   transition: 0.3s ease;
   cursor: pointer;
+}
+
+.counter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 45%;
+  height: 150px;
+  background-color: #fff;
+  box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+.counter_header {
+  font-size: 26px;
+}
+.counter_count {
+  font-size: 42px;
 }
 
 @keyframes fadeIn {
