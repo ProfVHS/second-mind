@@ -10,7 +10,7 @@ import { AddModal } from "../components/Modals/Tasks/AddModal";
 import { DeleteModal } from "../components/Modals/Tasks/DeleteModal";
 import { DoneModal } from "../components/Modals/Tasks/DoneModal";
 import { EditModal } from "../components/Modals/Tasks/EditModal";
-import { TasksBox } from "../components/Task";
+import TasksBox from "../components/task";
 import { useParams } from "react-router-dom";
 import { format } from "date-fns";
 import {

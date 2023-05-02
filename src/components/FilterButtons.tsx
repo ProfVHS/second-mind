@@ -1,4 +1,5 @@
 import React from "react";
+import { progressFilter } from "../shared/type";
 
 interface FilterButtonsProps {
   clickHandle: (filter: progressFilter) => void;

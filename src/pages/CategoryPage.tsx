@@ -4,7 +4,6 @@ import { useState } from "react";
 import "../styles/Style.scss";
 
 import FilterButtons from "../components/FilterButtons";
-import { TasksBox } from "../components/Task";
 import Navbar from "../components/navbar";
 import AddTaskBtn from "../components/AddTaskBtn";
 import { AddModal } from "../components/Modals/Tasks/AddModal";
@@ -18,6 +17,7 @@ import {
   progressFilter,
   taskValues,
 } from "../shared/type";
+import TasksBox from "../components/task";
 
 export function CategoryPage() {
   const { categoryName } = useParams();

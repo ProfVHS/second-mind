@@ -8,6 +8,7 @@ import {
 } from "date-fns";
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { taskValues } from "../shared/type";
 
 interface DayBoxProps {
   day: Date;

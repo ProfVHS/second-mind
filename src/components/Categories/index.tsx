@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { InfoSide } from "./InfoSide";
 import { Category } from "./Category";
 import { useNavigate } from "react-router-dom";
+import { categoryValues, modalVisibility, taskValues } from "../../shared/type";
 interface CategoriesProps {
   isDefault: boolean;
   categories: [categoryValues];
