@@ -2,16 +2,7 @@ import React, { useEffect, useState } from "react";
 import "../styles/Style.scss";
 
 import Navbar from "../components/navbar";
-import {
-  eachDayOfInterval,
-  format,
-  getDate,
-  getDay,
-  getDaysInMonth,
-  getWeekOfMonth,
-  isBefore,
-  isSameDay,
-} from "date-fns";
+import { eachDayOfInterval, format, getDate, getDay, getDaysInMonth, getWeekOfMonth, isBefore, isSameDay } from "date-fns";
 import { useNavigate } from "react-router-dom";
 import { DateControls } from "../components/DateControls";
 import { DayBox } from "../components/DayBox";
@@ -67,12 +58,7 @@ export function CalendarPage() {
       <div className="wrapper">
         <Navbar subpage="CALENDAR" />
         <div className="content" style={{ flexDirection: "column" }}>
-          <DateControls
-            year={year}
-            month={month}
-            nextClick={nextDate}
-            prevClick={prevDate}
-          />
+          <DateControls year={year} month={month} nextClick={nextDate} prevClick={prevDate} />
           <div className="calendar">
             {daysName.map((day, i) => (
               <div
@@ -81,15 +67,12 @@ export function CalendarPage() {
                 style={{
                   gridColumn: i + 1,
                   gridRow: 1,
-                }}
-              >
+                }}>
                 {daysName[i]}
               </div>
             ))}
             {days.map((day: Date, i) => {
-              return (
-                <DayBox day={day} year={year} month={month} tasks={tasks} />
-              );
+              return <DayBox key={i} day={day} year={year} month={month} tasks={tasks} />;
             })}
           </div>
         </div>
