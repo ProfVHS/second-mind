@@ -1,18 +1,20 @@
 body {
   background-color: #f9f9f9;
   height: 100vh;
+  box-sizing: border-box;
 }
 
 .wrapper {
-  display: flex;
-  height: 100vh;
+  display: grid;
+  grid-template-columns: 50px auto;
+  grid-template-rows: 100vh;
+  box-sizing: border-box;
 }
 
 .navbar {
-  height: 100vh;
+  height: 100%;
   width: 50px;
   padding: 10px 0;
-  position: absolute;
 
   box-sizing: border-box;
 
@@ -51,12 +53,15 @@ body {
   display: flex;
   align-items: center;
   width: 100%;
-  padding: 15px 75px;
+  padding: 15px;
+  box-sizing: border-box;
 }
 
 .leftContent {
+  position: relative;
   width: 50%;
   height: 100%;
+
   &_title {
     font-size: 32px;
     user-select: none;
@@ -83,6 +88,8 @@ body {
   display: flex;
   gap: 15px;
   &_btn {
+    text-align: center;
+    min-width: 50px;
     color: rgba(0, 0, 0, 0.6);
     border-radius: 15px;
     padding: 0 8px;
@@ -97,6 +104,9 @@ body {
   }
 }
 .flex-column {
+  width: 100%;
+  max-width: 360px;
+  min-width: 200px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -106,14 +116,16 @@ body {
 }
 .item {
   position: relative;
-  width: 360px;
+  max-width: 360px;
+  min-width: 200px;
+  width: 100%;
   height: 75px;
   margin-top: 22px;
 }
 .item-card {
   position: relative;
   z-index: 1;
-  width: 360px;
+  width: 100%;
   height: 75px;
 
   background-color: #ffffff;
@@ -470,7 +482,7 @@ body {
     font-size: 32px;
     margin-bottom: 50px;
     user-select: none;
-    width: 300px;
+    min-width: 300px;
 
     display: flex;
     align-items: center;
@@ -550,7 +562,6 @@ body {
   @media only screen and (max-width: 767px) {
     &_date {
       font-size: 22px;
-      width: 250px;
     }
     &_dayname {
       height: 25px;
@@ -564,6 +575,23 @@ body {
       font-size: 16px;
     }
   }
+
+  @media only screen and (max-width: 575px) {
+    &_date {
+      font-size: 18px;
+    }
+    &_dayname {
+      height: 20px;
+      width: 35px;
+      font-size: 14px;
+    }
+    &_day {
+      height: 35px;
+      width: 35px;
+
+      font-size: 14px;
+    }
+  }
 }
 .setting {
   background-color: #fff;
@@ -571,7 +599,8 @@ body {
 
   padding: 10px;
   margin-top: 15px;
-  width: 325px;
+  width: 100%;
+  max-width: 325px;
   border-radius: 8px;
 
   display: flex;
